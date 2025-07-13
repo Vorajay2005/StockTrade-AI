@@ -32,3 +32,67 @@
 2025-07-13 12:58:32,788 - ml_model_simple - WARNING - No saved model found for SBIN.NS
 2025-07-13 12:58:32,788 - trading_bot - WARNING - No existing model found for SBIN.NS
 2025-07-13 12:58:32,788 - trading_bot - INFO - Model initialization completed
+2025-07-13 13:10:11,570 - portfolio_manager - INFO - Database initialized successfully
+2025-07-13 13:10:11,571 - trading_bot - INFO - Trading bot initialized with 10 symbols
+2025-07-13 13:10:11,572 - trading_bot - INFO - Initializing LSTM models...
+2025-07-13 13:10:11,572 - trading_bot - INFO - Initializing model for RELIANCE.NS
+2025-07-13 13:10:11,812 - data_fetcher - INFO - Fetched 495 records for RELIANCE.NS
+2025-07-13 13:10:11,903 - technical_indicators - INFO - Calculated all technical indicators for 495 data points
+2025-07-13 13:10:11,905 - ml_model_simple - INFO - Training XGBoost model for RELIANCE.NS
+2025-07-13 13:10:12,182 - ml_model_simple - INFO - Model training completed. Val RMSE: 0.0165, Val R2: -0.3401
+2025-07-13 13:10:12,183 - trading_bot - INFO - Model trained for RELIANCE.NS: Val R2 = -0.3401
+2025-07-13 13:10:12,183 - trading_bot - INFO - Initializing model for TCS.NS
+2025-07-13 13:10:12,356 - data_fetcher - INFO - Fetched 495 records for TCS.NS
+2025-07-13 13:10:12,440 - technical_indicators - INFO - Calculated all technical indicators for 495 data points
+2025-07-13 13:10:12,440 - ml_model_simple - INFO - Training XGBoost model for TCS.NS
+2025-07-13 13:10:12,683 - ml_model_simple - INFO - Model training completed. Val RMSE: 0.0167, Val R2: -0.6581
+2025-07-13 13:10:12,683 - trading_bot - INFO - Model trained for TCS.NS: Val R2 = -0.6581
+2025-07-13 13:10:12,683 - trading_bot - INFO - Initializing model for INFY.NS
+2025-07-13 13:10:12,882 - data_fetcher - INFO - Fetched 495 records for INFY.NS
+2025-07-13 13:10:12,945 - technical_indicators - INFO - Calculated all technical indicators for 495 data points
+2025-07-13 13:10:12,945 - ml_model_simple - INFO - Training XGBoost model for INFY.NS
+2025-07-13 13:10:13,198 - ml_model_simple - INFO - Model training completed. Val RMSE: 0.0173, Val R2: -0.0142
+2025-07-13 13:10:13,198 - trading_bot - INFO - Model trained for INFY.NS: Val R2 = -0.0142
+2025-07-13 13:10:13,198 - trading_bot - INFO - Initializing model for HDFCBANK.NS
+2025-07-13 13:10:13,360 - data_fetcher - INFO - Fetched 495 records for HDFCBANK.NS
+2025-07-13 13:10:13,442 - technical_indicators - INFO - Calculated all technical indicators for 495 data points
+2025-07-13 13:10:13,443 - ml_model_simple - INFO - Training XGBoost model for HDFCBANK.NS
+2025-07-13 13:10:13,690 - ml_model_simple - INFO - Model training completed. Val RMSE: 0.0161, Val R2: -0.8616
+2025-07-13 13:10:13,690 - trading_bot - INFO - Model trained for HDFCBANK.NS: Val R2 = -0.8616
+2025-07-13 13:10:13,690 - trading_bot - INFO - Initializing model for HINDUNILVR.NS
+2025-07-13 13:10:13,858 - data_fetcher - INFO - Fetched 495 records for HINDUNILVR.NS
+2025-07-13 13:10:13,920 - technical_indicators - INFO - Calculated all technical indicators for 495 data points
+2025-07-13 13:10:13,921 - ml_model_simple - INFO - Training XGBoost model for HINDUNILVR.NS
+2025-07-13 13:10:14,165 - ml_model_simple - INFO - Model training completed. Val RMSE: 0.0147, Val R2: -0.5282
+2025-07-13 13:10:14,165 - trading_bot - INFO - Model trained for HINDUNILVR.NS: Val R2 = -0.5282
+2025-07-13 13:10:14,165 - trading_bot - INFO - Initializing model for ICICIBANK.NS
+2025-07-13 13:10:14,325 - data_fetcher - INFO - Fetched 495 records for ICICIBANK.NS
+2025-07-13 13:10:14,410 - technical_indicators - INFO - Calculated all technical indicators for 495 data points
+2025-07-13 13:10:14,410 - ml_model_simple - INFO - Training XGBoost model for ICICIBANK.NS
+2025-07-13 13:10:14,644 - ml_model_simple - INFO - Model training completed. Val RMSE: 0.0131, Val R2: -0.1717
+2025-07-13 13:10:14,644 - trading_bot - INFO - Model trained for ICICIBANK.NS: Val R2 = -0.1717
+2025-07-13 13:10:14,644 - trading_bot - INFO - Initializing model for KOTAKBANK.NS
+2025-07-13 13:10:14,817 - data_fetcher - INFO - Fetched 495 records for KOTAKBANK.NS
+2025-07-13 13:10:14,900 - technical_indicators - INFO - Calculated all technical indicators for 495 data points
+2025-07-13 13:10:14,900 - ml_model_simple - INFO - Training XGBoost model for KOTAKBANK.NS
+2025-07-13 13:10:15,129 - ml_model_simple - INFO - Model training completed. Val RMSE: 0.0151, Val R2: -0.1356
+2025-07-13 13:10:15,129 - trading_bot - INFO - Model trained for KOTAKBANK.NS: Val R2 = -0.1356
+2025-07-13 13:10:15,129 - trading_bot - INFO - Initializing model for BHARTIARTL.NS
+2025-07-13 13:10:15,283 - data_fetcher - INFO - Fetched 495 records for BHARTIARTL.NS
+2025-07-13 13:10:15,353 - technical_indicators - INFO - Calculated all technical indicators for 495 data points
+2025-07-13 13:10:15,354 - ml_model_simple - INFO - Training XGBoost model for BHARTIARTL.NS
+2025-07-13 13:10:15,590 - ml_model_simple - INFO - Model training completed. Val RMSE: 0.0165, Val R2: -0.2608
+2025-07-13 13:10:15,590 - trading_bot - INFO - Model trained for BHARTIARTL.NS: Val R2 = -0.2608
+2025-07-13 13:10:15,590 - trading_bot - INFO - Initializing model for ITC.NS
+2025-07-13 13:10:15,763 - data_fetcher - INFO - Fetched 495 records for ITC.NS
+2025-07-13 13:10:15,847 - technical_indicators - INFO - Calculated all technical indicators for 495 data points
+2025-07-13 13:10:15,847 - ml_model_simple - INFO - Training XGBoost model for ITC.NS
+2025-07-13 13:10:16,076 - ml_model_simple - INFO - Model training completed. Val RMSE: 0.0116, Val R2: -0.4859
+2025-07-13 13:10:16,077 - trading_bot - INFO - Model trained for ITC.NS: Val R2 = -0.4859
+2025-07-13 13:10:16,077 - trading_bot - INFO - Initializing model for SBIN.NS
+2025-07-13 13:10:16,245 - data_fetcher - INFO - Fetched 495 records for SBIN.NS
+2025-07-13 13:10:16,328 - technical_indicators - INFO - Calculated all technical indicators for 495 data points
+2025-07-13 13:10:16,329 - ml_model_simple - INFO - Training XGBoost model for SBIN.NS
+2025-07-13 13:10:16,552 - ml_model_simple - INFO - Model training completed. Val RMSE: 0.0159, Val R2: -0.4862
+2025-07-13 13:10:16,552 - trading_bot - INFO - Model trained for SBIN.NS: Val R2 = -0.4862
+2025-07-13 13:10:16,552 - trading_bot - INFO - Model initialization completed

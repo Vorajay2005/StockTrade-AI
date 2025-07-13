@@ -17,6 +17,13 @@ import os
 from trading_bot import TradingBot
 from data_fetcher import DataFetcher
 from portfolio_manager import PortfolioManager
+# Import enhanced portfolio - with error handling
+try:
+    from enhanced_portfolio import create_enhanced_portfolio_interface, EnhancedPortfolioManager
+    ENHANCED_FEATURES_AVAILABLE = True
+except ImportError as e:
+    ENHANCED_FEATURES_AVAILABLE = False
+    print(f"Enhanced portfolio features not available: {e}")
 from config import *
 
 # Page config
@@ -78,11 +85,8 @@ class TradingDashboard:
         # Sidebar
         self.render_sidebar()
         
-        # Main content
-        if not st.session_state.bot_initialized:
-            self.render_setup_page()
-        else:
-            self.render_main_dashboard()
+        # Always show the main dashboard with tabs
+        self.render_main_dashboard()
     
     def render_sidebar(self):
         """Render sidebar with controls"""
@@ -186,31 +190,128 @@ class TradingDashboard:
     
     def render_main_dashboard(self):
         """Render main trading dashboard"""
-        if not self.bot:
-            st.error("Bot not properly initialized")
-            return
         
-        # Get current data
-        portfolio_status = self.bot.get_portfolio_status()
-        current_signals = self.bot.get_current_signals()
+        # Always show top metrics and tabs, even if bot is not initialized
+        if self.bot and st.session_state.get('bot_initialized'):
+            # Get current data from bot
+            portfolio_status = self.bot.get_portfolio_status()
+            current_signals = self.bot.get_current_signals()
+            
+            # Top metrics
+            self.render_portfolio_metrics(portfolio_status)
+        else:
+            # Show sample/empty metrics when bot is not initialized
+            self.render_sample_metrics()
+            portfolio_status = None
+            current_signals = None
         
-        # Top metrics
-        self.render_portfolio_metrics(portfolio_status)
-        
-        # Charts section
-        tab1, tab2, tab3, tab4 = st.tabs(["📈 Portfolio", "📊 Live Charts", "🎯 Trading Signals", "📋 Reports"])
+        # Always show tabs - this is the key fix!
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(["📈 Portfolio", "📊 Live Charts", "🎯 Trading Signals", "📋 Reports", "🎯 AI Trading"])
         
         with tab1:
-            self.render_portfolio_tab(portfolio_status)
+            if portfolio_status:
+                self.render_portfolio_tab(portfolio_status)
+            else:
+                self.render_setup_portfolio_tab()
         
         with tab2:
-            self.render_charts_tab(current_signals)
+            if current_signals:
+                self.render_charts_tab(current_signals)
+            else:
+                self.render_setup_charts_tab()
         
         with tab3:
-            self.render_signals_tab(current_signals)
+            if current_signals:
+                self.render_signals_tab(current_signals)
+            else:
+                self.render_setup_signals_tab()
         
         with tab4:
             self.render_reports_tab()
+        
+        with tab5:
+            self.render_enhanced_trading_tab()
+    
+    def render_sample_metrics(self):
+        """Render sample metrics when bot is not initialized"""
+        col1, col2, col3, col4, col5 = st.columns(5)
+        
+        with col1:
+            st.metric("Portfolio Value", "₹1,00,000", "₹0")
+        with col2:
+            st.metric("Available Cash", "₹1,00,000", "₹0")
+        with col3:
+            st.metric("Total Return", "0.0%", "0.0%")
+        with col4:
+            st.metric("Active Positions", "0", "0")
+        with col5:
+            st.metric("Day's P&L", "₹0", "0.0%")
+        
+        st.info("💡 **Initialize the bot** from the sidebar to see real portfolio data!")
+    
+    def render_setup_portfolio_tab(self):
+        """Render portfolio tab when bot is not initialized"""
+        st.header("📈 Portfolio Management")
+        st.warning("⚠️ **Bot not initialized yet**")
+        st.info("Please initialize the trading bot from the sidebar to:")
+        st.write("- ✅ View your current portfolio")
+        st.write("- ✅ See individual stock positions")
+        st.write("- ✅ Track profit & loss")
+        st.write("- ✅ Monitor portfolio performance")
+        
+        # Show sample portfolio structure
+        st.subheader("📊 Sample Portfolio Structure")
+        sample_portfolio = {
+            'Symbol': ['RELIANCE.NS', 'TCS.NS', 'INFY.NS'],
+            'Quantity': [10, 5, 15],
+            'Avg Price': ['₹2,450', '₹3,890', '₹1,650'],
+            'Current Price': ['₹2,520', '₹3,920', '₹1,680'],
+            'P&L': ['+₹700', '+₹150', '+₹450']
+        }
+        import pandas as pd
+        st.dataframe(pd.DataFrame(sample_portfolio), use_container_width=True)
+    
+    def render_setup_charts_tab(self):
+        """Render charts tab when bot is not initialized"""
+        st.header("📊 Live Stock Charts")
+        st.warning("⚠️ **Bot not initialized yet**")
+        st.info("Please initialize the trading bot from the sidebar to:")
+        st.write("- ✅ View real-time stock charts")
+        st.write("- ✅ See technical indicators")
+        st.write("- ✅ Monitor price movements")
+        st.write("- ✅ Analyze trading patterns")
+        
+        # Show sample chart
+        st.subheader("📈 Sample Chart")
+        import numpy as np
+        chart_data = pd.DataFrame(
+            np.random.randn(20, 3),
+            columns=['RELIANCE.NS', 'TCS.NS', 'INFY.NS']
+        )
+        st.line_chart(chart_data)
+        st.caption("This is sample data. Real charts will appear after bot initialization.")
+    
+    def render_setup_signals_tab(self):
+        """Render signals tab when bot is not initialized"""
+        st.header("🎯 AI Trading Signals")
+        st.warning("⚠️ **Bot not initialized yet**")
+        st.info("Please initialize the trading bot from the sidebar to:")
+        st.write("- ✅ Get AI-powered buy/sell signals")
+        st.write("- ✅ See confidence scores")
+        st.write("- ✅ View ML predictions")
+        st.write("- ✅ Monitor signal strength")
+        
+        # Show sample signals
+        st.subheader("🤖 Sample AI Signals")
+        sample_signals = {
+            'Symbol': ['RELIANCE.NS', 'TCS.NS', 'INFY.NS'],
+            'Signal': ['🟢 BUY', '🟡 HOLD', '🔴 SELL'],
+            'Confidence': ['85%', '60%', '75%'],
+            'Current Price': ['₹2,520', '₹3,920', '₹1,680'],
+            'Target': ['₹2,650', '₹4,000', '₹1,620']
+        }
+        st.dataframe(pd.DataFrame(sample_signals), use_container_width=True)
+        st.caption("These are sample signals. Real AI predictions will appear after bot initialization.")
     
     def render_portfolio_metrics(self, portfolio_status):
         """Render top portfolio metrics"""
@@ -543,6 +644,374 @@ class TradingDashboard:
             st.success("Trading bot stopped!")
         except Exception as e:
             st.error(f"Error stopping bot: {str(e)}")
+    
+    def render_enhanced_trading_tab(self):
+        """Render the enhanced AI trading interface"""
+        st.header("🎯 AI-Powered Trading Center")
+        
+        if not self.bot or not st.session_state.get('bot_initialized'):
+            st.warning("⚠️ Please initialize the trading bot first!")
+            st.info("Go to the sidebar and click 'Initialize Bot' to get started.")
+            return
+        
+        # Create sub-tabs for different features
+        ai_tab1, ai_tab2, ai_tab3, ai_tab4 = st.tabs([
+            "🤖 AI Recommendations",
+            "💼 Manual Trading", 
+            "🎯 Price Targets",
+            "🧠 Model Training"
+        ])
+        
+        with ai_tab1:
+            self.render_ai_recommendations()
+        
+        with ai_tab2:
+            self.render_manual_trading()
+        
+        with ai_tab3:
+            self.render_price_targets()
+        
+        with ai_tab4:
+            self.render_model_training()
+    
+    def render_ai_recommendations(self):
+        """Render AI recommendations sub-tab"""
+        st.subheader("🤖 AI Stock Recommendations")
+        
+        if st.button("🔄 Get Fresh AI Recommendations", type="primary"):
+            with st.spinner("Getting AI recommendations..."):
+                try:
+                    # Get current signals from the bot
+                    current_signals = self.bot.get_current_signals()
+                    
+                    if current_signals:
+                        st.success(f"Found {len(current_signals)} stock recommendations!")
+                        
+                        # Display recommendations in a table
+                        recommendations = []
+                        for symbol, signal_data in current_signals.items():
+                            ml_pred = signal_data.get('ml_prediction', {})
+                            current_price = signal_data.get('current_price', 0)
+                            signal = ml_pred.get('signal', 'HOLD')
+                            confidence = ml_pred.get('signal_strength', 0)
+                            
+                            # Determine recommendation color
+                            if signal == 'BUY' and confidence > 0.6:
+                                recommendation = "🟢 STRONG BUY"
+                            elif signal == 'BUY':
+                                recommendation = "🟢 BUY"
+                            elif signal == 'SELL' and confidence > 0.6:
+                                recommendation = "🔴 STRONG SELL"
+                            elif signal == 'SELL':
+                                recommendation = "🟠 SELL"
+                            else:
+                                recommendation = "🟡 HOLD"
+                            
+                            recommendations.append({
+                                'Symbol': symbol,
+                                'Current Price': f"₹{current_price:.2f}",
+                                'Recommendation': recommendation,
+                                'Confidence': f"{confidence:.1%}",
+                                'Signal Strength': f"{confidence:.3f}"
+                            })
+                        
+                        # Sort by confidence
+                        recommendations.sort(key=lambda x: float(x['Signal Strength']), reverse=True)
+                        
+                        # Display top 10 recommendations
+                        import pandas as pd
+                        df = pd.DataFrame(recommendations[:10])
+                        st.dataframe(df, use_container_width=True)
+                        
+                    else:
+                        st.info("No recommendations available. Try starting the trading bot first.")
+                        
+                except Exception as e:
+                    st.error(f"Error getting recommendations: {str(e)}")
+        
+        st.info("💡 **Tip:** Higher confidence scores (>60%) indicate stronger signals!")
+    
+    def render_manual_trading(self):
+        """Render manual trading sub-tab"""
+        st.subheader("💼 Manual Stock Trading")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.write("**Buy Stocks**")
+            
+            # Stock selection
+            buy_symbol = st.selectbox("Select Stock to Buy", NSE_STOCKS[:20], key="manual_buy_symbol")
+            
+            # Get current price
+            try:
+                current_signals = self.bot.get_current_signals()
+                current_price = current_signals.get(buy_symbol, {}).get('current_price', 0)
+                
+                if current_price > 0:
+                    st.metric("Current Price", f"₹{current_price:.2f}")
+                    
+                    # Quantity input
+                    buy_quantity = st.number_input("Quantity to Buy", min_value=1, value=10, key="manual_buy_qty")
+                    
+                    # Calculate total cost
+                    commission = 0.001  # 0.1% commission
+                    total_cost = buy_quantity * current_price * (1 + commission)
+                    
+                    st.write(f"**Total Cost:** ₹{total_cost:.2f} (including 0.1% commission)")
+                    
+                    # Get portfolio status
+                    portfolio_status = self.bot.get_portfolio_status()
+                    available_cash = portfolio_status['portfolio']['available_cash']
+                    st.write(f"**Available Cash:** ₹{available_cash:.2f}")
+                    
+                    if st.button("💰 Execute Buy Order", type="primary"):
+                        if total_cost <= available_cash:
+                            # Execute buy order (simulated)
+                            success = self.bot.portfolio_manager.buy_stock(
+                                buy_symbol, buy_quantity, current_price, 
+                                reason="Manual buy order from dashboard"
+                            )
+                            if success:
+                                st.success(f"✅ Successfully bought {buy_quantity} shares of {buy_symbol}")
+                                st.rerun()
+                            else:
+                                st.error("❌ Failed to execute buy order")
+                        else:
+                            st.error("❌ Insufficient funds")
+                else:
+                    st.warning("Price data not available. Please ensure the bot is running.")
+                    
+            except Exception as e:
+                st.error(f"Error getting price data: {str(e)}")
+        
+        with col2:
+            st.write("**Sell Stocks**")
+            
+            try:
+                # Get current positions
+                portfolio_status = self.bot.get_portfolio_status()
+                positions = portfolio_status['positions']
+                
+                if positions:
+                    # Position selection
+                    position_symbols = list(positions.keys())
+                    sell_symbol = st.selectbox("Select Stock to Sell", position_symbols, key="manual_sell_symbol")
+                    
+                    if sell_symbol in positions:
+                        position = positions[sell_symbol]
+                        current_signals = self.bot.get_current_signals()
+                        current_price = current_signals.get(sell_symbol, {}).get('current_price', 0)
+                        
+                        st.metric("Holdings", f"{position['quantity']} shares")
+                        st.metric("Avg Price", f"₹{position['avg_price']:.2f}")
+                        st.metric("Current Price", f"₹{current_price:.2f}")
+                        
+                        # P&L calculation
+                        if current_price > 0:
+                            unrealized_pnl = (current_price - position['avg_price']) * position['quantity']
+                            pnl_pct = (unrealized_pnl / (position['avg_price'] * position['quantity'])) * 100
+                            
+                            pnl_color = "green" if unrealized_pnl >= 0 else "red"
+                            st.markdown(f"**Unrealized P&L:** <span style='color:{pnl_color}'>₹{unrealized_pnl:.2f} ({pnl_pct:+.1f}%)</span>", 
+                                       unsafe_allow_html=True)
+                            
+                            # Quantity to sell
+                            sell_quantity = st.number_input("Quantity to Sell", 
+                                                          min_value=1, 
+                                                          max_value=position['quantity'],
+                                                          value=min(10, position['quantity']),
+                                                          key="manual_sell_qty")
+                            
+                            # Calculate proceeds
+                            commission = 0.001  # 0.1% commission
+                            total_proceeds = sell_quantity * current_price * (1 - commission)
+                            st.write(f"**Total Proceeds:** ₹{total_proceeds:.2f} (after 0.1% commission)")
+                            
+                            if st.button("💸 Execute Sell Order", type="primary"):
+                                success = self.bot.portfolio_manager.sell_stock(
+                                    sell_symbol, sell_quantity, current_price,
+                                    reason="Manual sell order from dashboard"
+                                )
+                                if success:
+                                    st.success(f"✅ Successfully sold {sell_quantity} shares of {sell_symbol}")
+                                    st.rerun()
+                                else:
+                                    st.error("❌ Failed to execute sell order")
+                else:
+                    st.info("No positions to sell. Buy some stocks first!")
+                    
+            except Exception as e:
+                st.error(f"Error getting position data: {str(e)}")
+    
+    def render_price_targets(self):
+        """Render price targets sub-tab"""
+        st.subheader("🎯 Price Targets & Stop Loss Monitoring")
+        
+        try:
+            # Get current positions and prices
+            portfolio_status = self.bot.get_portfolio_status()
+            positions = portfolio_status['positions']
+            current_signals = self.bot.get_current_signals()
+            
+            if positions:
+                st.write("**Active Positions with Price Targets:**")
+                
+                for symbol, position in positions.items():
+                    current_price = current_signals.get(symbol, {}).get('current_price', 0)
+                    
+                    if current_price > 0:
+                        with st.container():
+                            col1, col2, col3, col4 = st.columns(4)
+                            
+                            with col1:
+                                st.write(f"**{symbol}**")
+                                st.write(f"Holdings: {position['quantity']} shares")
+                                st.write(f"Avg Price: ₹{position['avg_price']:.2f}")
+                            
+                            with col2:
+                                st.write(f"**Current Price**")
+                                st.write(f"₹{current_price:.2f}")
+                                price_change = current_price - position['avg_price']
+                                price_change_pct = (price_change / position['avg_price']) * 100
+                                color = "green" if price_change >= 0 else "red"
+                                st.markdown(f"<span style='color:{color}'>{price_change_pct:+.1f}%</span>", 
+                                           unsafe_allow_html=True)
+                            
+                            with col3:
+                                # Calculate targets
+                                stop_loss = position['avg_price'] * 0.95  # 5% stop loss
+                                take_profit = position['avg_price'] * 1.15  # 15% take profit
+                                
+                                st.write("**Stop Loss (5%)**")
+                                st.write(f"₹{stop_loss:.2f}")
+                                if current_price <= stop_loss:
+                                    st.error("🚨 Stop Loss Triggered!")
+                                
+                                st.write("**Take Profit (15%)**")
+                                st.write(f"₹{take_profit:.2f}")
+                                if current_price >= take_profit:
+                                    st.success("🎯 Target Reached!")
+                            
+                            with col4:
+                                # P&L
+                                total_pnl = (current_price - position['avg_price']) * position['quantity']
+                                total_pnl_pct = (total_pnl / (position['avg_price'] * position['quantity'])) * 100
+                                
+                                st.write("**Unrealized P&L**")
+                                color = "green" if total_pnl >= 0 else "red"
+                                st.markdown(f"<span style='color:{color}'>₹{total_pnl:.2f}</span>", 
+                                           unsafe_allow_html=True)
+                                st.markdown(f"<span style='color:{color}'>({total_pnl_pct:+.1f}%)</span>", 
+                                           unsafe_allow_html=True)
+                            
+                            st.divider()
+            else:
+                st.info("No active positions to monitor. Buy some stocks to see price targets!")
+                
+        except Exception as e:
+            st.error(f"Error loading price targets: {str(e)}")
+    
+    def render_model_training(self):
+        """Render model training sub-tab"""
+        st.subheader("🧠 AI Model Training Center")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.write("**Individual Stock Training**")
+            
+            train_symbol = st.selectbox("Select Stock for Training", NSE_STOCKS[:20], key="train_symbol")
+            training_period = st.selectbox("Training Data Period", ["6mo", "1y", "2y", "5y"], index=2, key="train_period")
+            
+            if st.button("🚀 Train Model", type="primary"):
+                with st.spinner(f"Training AI model for {train_symbol}..."):
+                    try:
+                        # Retrain the specific model
+                        if self.bot and hasattr(self.bot, 'models') and train_symbol in self.bot.models:
+                            # Get historical data
+                            historical_data = self.bot.data_fetcher.fetch_historical_data(train_symbol, period=training_period)
+                            
+                            if not historical_data.empty:
+                                # Add technical indicators
+                                historical_data = self.bot.technical_indicators.add_all_indicators(historical_data)
+                                
+                                # Train the model
+                                self.bot.models[train_symbol].train_model(historical_data)
+                                st.success(f"✅ Model trained successfully for {train_symbol}!")
+                                
+                                # Show some basic metrics
+                                st.info(f"📊 Training completed with {len(historical_data)} data points")
+                            else:
+                                st.error(f"❌ No historical data available for {train_symbol}")
+                        else:
+                            st.error("❌ Model not found. Please initialize the bot first.")
+                            
+                    except Exception as e:
+                        st.error(f"❌ Training failed: {str(e)}")
+        
+        with col2:
+            st.write("**Batch Training**")
+            
+            selected_stocks = st.multiselect("Select Multiple Stocks", 
+                                           NSE_STOCKS[:20], 
+                                           default=NSE_STOCKS[:5],
+                                           key="batch_train_stocks")
+            
+            if st.button("🚀 Train All Selected Models", type="primary"):
+                if selected_stocks:
+                    progress_bar = st.progress(0)
+                    status_text = st.empty()
+                    
+                    for i, symbol in enumerate(selected_stocks):
+                        status_text.text(f"Training model for {symbol}...")
+                        
+                        try:
+                            if self.bot and hasattr(self.bot, 'models') and symbol in self.bot.models:
+                                historical_data = self.bot.data_fetcher.fetch_historical_data(symbol, period="2y")
+                                
+                                if not historical_data.empty:
+                                    historical_data = self.bot.technical_indicators.add_all_indicators(historical_data)
+                                    self.bot.models[symbol].train_model(historical_data)
+                                    st.write(f"✅ {symbol} - Model trained successfully")
+                                else:
+                                    st.write(f"⚠️ {symbol} - No data available")
+                            else:
+                                st.write(f"❌ {symbol} - Model not found")
+                        
+                        except Exception as e:
+                            st.write(f"❌ {symbol} - Training failed: {str(e)}")
+                        
+                        progress_bar.progress((i + 1) / len(selected_stocks))
+                    
+                    status_text.text("✅ Batch training completed!")
+                    st.success("🎉 All selected models trained!")
+                else:
+                    st.warning("Please select at least one stock for training")
+        
+        # Model status
+        st.write("**Current Model Status**")
+        if self.bot and hasattr(self.bot, 'models'):
+            model_info = []
+            for symbol in NSE_STOCKS[:10]:
+                if symbol in self.bot.models:
+                    model_info.append({
+                        'Symbol': symbol,
+                        'Status': '✅ Trained',
+                        'Type': 'Random Forest'
+                    })
+                else:
+                    model_info.append({
+                        'Symbol': symbol,
+                        'Status': '❌ Not Trained',
+                        'Type': 'N/A'
+                    })
+            
+            import pandas as pd
+            df = pd.DataFrame(model_info)
+            st.dataframe(df, use_container_width=True)
+        else:
+            st.info("Initialize the trading bot to see model status")
     
     def retrain_models(self):
         """Retrain LSTM models"""

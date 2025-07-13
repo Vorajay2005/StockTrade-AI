@@ -1,393 +1,447 @@
-# 🤖 AI Stock Trading Bot for NSE
+# 🤖 AI Stock Trading Bot
 
-A comprehensive AI-powered stock trading bot for the Indian National Stock Exchange (NSE) that uses LSTM neural networks for price prediction, technical analysis, and automated trading with dummy money.
+An intelligent stock trading bot that uses machine learning to analyze NSE (National Stock Exchange) stocks and provide automated trading signals with a comprehensive web dashboard.
 
-## 🚀 Features
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-red)](https://streamlit.io)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![NSE](https://img.shields.io/badge/Market-NSE%20India-orange)](https://nseindia.com)
 
-### Core Features
+## 🌟 Features
 
-- **Real-time NSE Data**: Live stock data from Yahoo Finance
-- **LSTM Neural Networks**: Deep learning models for price prediction
-- **Technical Analysis**: 15+ technical indicators (RSI, MACD, Bollinger Bands, etc.)
-- **Automated Trading**: AI-driven buy/sell decisions with risk management
-- **Portfolio Management**: Complete portfolio tracking with dummy money
-- **Live Dashboard**: Interactive Streamlit dashboard with real-time charts
+### 🤖 **AI-Powered Trading**
 
-### AI & Machine Learning
+- **Machine Learning Models**: XGBoost and Random Forest for price prediction
+- **Technical Indicators**: 15+ indicators including RSI, MACD, Bollinger Bands
+- **Confidence Scoring**: Each prediction comes with a confidence percentage
+- **Multi-Stock Analysis**: Simultaneous analysis of 50+ NSE stocks
 
-- **LSTM Models**: Individual models for each stock symbol
-- **Feature Engineering**: Technical indicators as input features
-- **Model Retraining**: Continuous learning with new market data
-- **Signal Confidence**: Confidence scoring for trading decisions
-- **Ensemble Approach**: Combines technical analysis with ML predictions
+### 📊 **Professional Dashboard**
 
-### Risk Management
+- **Real-time Portfolio Tracking**: Live P&L, positions, and performance metrics
+- **Interactive Charts**: Candlestick charts with technical indicators overlay
+- **AI Recommendations**: Buy/sell/hold signals with confidence scores
+- **Manual Trading**: One-click buy/sell with real-time price data
+- **Price Target Monitoring**: Automatic stop-loss and take-profit tracking
 
-- **Position Sizing**: Kelly criterion and fixed percentage approaches
-- **Stop Loss**: Automatic stop-loss at 5% decline
-- **Take Profit**: Automatic profit-taking at 15% gain
-- **Portfolio Limits**: Maximum position size and correlation controls
-- **Daily Loss Limits**: Maximum daily loss protection
+### 🧠 **Advanced Features**
 
-### Dashboard Features
-
-- **Portfolio Overview**: Real-time portfolio value and P&L
-- **Live Charts**: Candlestick charts with volume and indicators
-- **Trading Signals**: Current AI predictions and confidence levels
-- **Performance Analytics**: Detailed performance metrics and reports
-- **Trade History**: Complete trade log with reasons and outcomes
-
-## 📋 Requirements
-
-### System Requirements
-
-- Python 3.8 or higher
-- 4GB+ RAM (for LSTM training)
-- Internet connection for real-time data
-
-### Python Dependencies
-
-```
-yfinance==0.2.28
-pandas==2.1.4
-numpy==1.24.3
-scikit-learn==1.3.2
-tensorflow==2.15.0
-matplotlib==3.8.2
-plotly==5.17.0
-streamlit==1.28.2
-```
-
-## 🛠️ Installation
-
-1. **Clone the repository**:
-
-```bash
-git clone <repository-url>
-cd Stock-Trade_AI
-```
-
-2. **Install dependencies**:
-
-```bash
-pip install -r requirements.txt
-```
-
-3. **Create necessary directories**:
-
-```bash
-mkdir models scalers reports charts
-```
+- **Model Training Center**: Train AI models individually or in batches
+- **Risk Management**: Built-in position sizing and risk assessment
+- **Market Status**: Real-time NSE market open/close status
+- **Performance Analytics**: Detailed trading reports and statistics
 
 ## 🚀 Quick Start
 
-### 1. Launch the Dashboard
+### Prerequisites
 
-```bash
-python run_dashboard.py
-```
+- Python 3.8 or higher
+- Git
 
-Or directly with Streamlit:
+### Installation
 
-```bash
-streamlit run dashboard.py
-```
+1. **Clone the repository**
 
-### 2. Initialize the Bot
+   ```bash
+   git clone https://github.com/yourusername/Stock-Trade_AI.git
+   cd Stock-Trade_AI
+   ```
 
-1. Open the dashboard in your browser (http://localhost:8501)
-2. Select stocks from the sidebar (default: top 10 NSE stocks)
-3. Click "Initialize Bot" to setup LSTM models
-4. Wait for model training/loading to complete
+2. **Run the setup script**
 
-### 3. Start Trading
+   ```bash
+   python3 setup_and_run.py
+   ```
 
-1. Click "▶️ Start Trading" to begin automated trading
-2. Monitor real-time portfolio performance
-3. View live charts and trading signals
-4. Stop trading anytime with "⏹️ Stop Trading"
+3. **Choose option 1** to start the dashboard
 
-## 📊 Usage Guide
+4. **Open your browser** and go to: `http://localhost:8501`
 
-### Dashboard Sections
+That's it! The setup script automatically:
 
-#### 1. Portfolio Tab
+- ✅ Creates a virtual environment
+- ✅ Installs all dependencies
+- ✅ Starts the web dashboard
+- ✅ Opens in your browser
 
-- **Portfolio Composition**: Pie chart of current holdings
-- **Portfolio Summary**: Key metrics and performance
-- **Positions Table**: Detailed view of all positions
+## 📱 Dashboard Overview
 
-#### 2. Live Charts Tab
+### **5 Main Tabs**
 
-- **Candlestick Charts**: Price action with volume
-- **Technical Indicators**: Overlaid indicators
-- **Real-time Updates**: Live price movements
+#### 1. 📈 **Portfolio Tab**
 
-#### 3. Trading Signals Tab
+- Current portfolio value and cash balance
+- Individual stock positions with P&L
+- Portfolio composition pie chart
+- Performance metrics
 
-- **Current Signals**: AI predictions for all stocks
-- **Signal Confidence**: Confidence levels for each prediction
-- **Detailed Analysis**: In-depth signal breakdown
+#### 2. 📊 **Live Charts Tab**
 
-#### 4. Reports Tab
+- Real-time candlestick charts
+- Technical indicators overlay (RSI, MACD, SMA, EMA)
+- Volume analysis
+- Interactive price charts
 
-- **Trading Statistics**: Performance metrics
-- **Risk Analytics**: Risk assessment and alerts
-- **Downloadable Reports**: Complete trading reports
+#### 3. 🎯 **Trading Signals Tab**
 
-### Bot Controls
+- Current AI predictions for all stocks
+- Buy/sell/hold recommendations
+- Confidence scores and signal strength
+- Technical analysis summary
 
-#### Sidebar Controls
+#### 4. 📋 **Reports Tab**
 
-- **Stock Selection**: Choose up to 20 NSE stocks
-- **Initialize Bot**: Setup LSTM models
-- **Start/Stop Trading**: Control automated trading
-- **Retrain Models**: Update models with latest data
-- **Auto-refresh**: Automatic data updates
+- Trading performance analytics
+- Historical trade logs
+- Profit/loss reports
+- Statistics and insights
 
-#### Trading Parameters
+#### 5. 🎯 **AI Trading Tab** _(Enhanced Features)_
 
-- **Initial Capital**: ₹1,00,000 (configurable in config.py)
-- **Position Size**: Maximum 10% per stock
-- **Stop Loss**: 5% automatic stop loss
-- **Take Profit**: 15% automatic profit taking
+##### **4 Sub-Features:**
 
-## 🧠 AI Model Details
+###### 🤖 **AI Recommendations**
 
-### LSTM Architecture
+- Fresh AI predictions with confidence scores
+- Ranked recommendations (Strong Buy, Buy, Hold, Sell)
+- Real-time analysis of market conditions
 
-```
-Input Layer: 60 days × features
-LSTM Layer 1: 50 units with dropout
-LSTM Layer 2: 50 units with dropout
-Dense Layer 1: 50 units with ReLU
-Dense Layer 2: 25 units with ReLU
-Output Layer: 1 unit (price prediction)
-```
+###### 💼 **Manual Trading**
 
-### Features Used
+- **Buy Stocks**: Select stock, quantity, see total cost
+- **Sell Stocks**: Manage positions, see P&L in real-time
+- **Portfolio Management**: Track all trades automatically
 
-- OHLCV data (Open, High, Low, Close, Volume)
-- Simple Moving Averages (5, 10, 20, 50 days)
-- Exponential Moving Averages (12, 26 days)
-- RSI (Relative Strength Index)
-- MACD (Moving Average Convergence Divergence)
-- Bollinger Bands
-- Stochastic Oscillator
-- ADX (Average Directional Index)
-- Volume indicators
-- Price action metrics
+###### 🎯 **Price Targets**
 
-### Training Process
+- Automatic stop-loss (5%) and take-profit (15%) levels
+- Real-time monitoring of all positions
+- Alerts when targets are reached
 
-1. **Data Collection**: 2 years of historical data
-2. **Feature Engineering**: Calculate technical indicators
-3. **Data Preprocessing**: Normalization and sequence creation
-4. **Model Training**: LSTM training with validation
-5. **Performance Evaluation**: Metrics calculation and validation
+###### 🧠 **Model Training**
 
-## 📈 Trading Strategy
+- **Individual Training**: Train models for specific stocks
+- **Batch Training**: Train multiple models simultaneously
+- **Model Performance**: View accuracy metrics and status
 
-### Signal Generation
+## 🛠️ Technology Stack
 
-1. **Technical Analysis**: Multiple indicator analysis
-2. **LSTM Prediction**: Neural network price forecast
-3. **Signal Combination**: Weighted average of signals
-4. **Confidence Scoring**: Reliability assessment
+### **Backend**
 
-### Decision Making
+- **Python 3.8+**: Core programming language
+- **XGBoost**: Gradient boosting for ML predictions
+- **Scikit-learn**: Random Forest and data preprocessing
+- **Pandas**: Data manipulation and analysis
+- **NumPy**: Numerical computations
+- **yfinance**: Real-time stock data fetching
 
-- **Buy Signal**: Combined signal > 0.5 with confidence > 0.3
-- **Sell Signal**: Combined signal < -0.5 with confidence > 0.3
-- **Hold Signal**: Signals between thresholds
-- **Risk Checks**: Portfolio limits and risk management
+### **Frontend**
 
-### Execution Logic
+- **Streamlit**: Interactive web dashboard
+- **Plotly**: Interactive charts and visualizations
+- **Altair**: Statistical visualizations
 
-1. **Market Hours Check**: Only trade during NSE hours (9:15 AM - 3:30 PM)
-2. **Position Sizing**: Calculate optimal position size
-3. **Risk Validation**: Check all risk parameters
-4. **Order Execution**: Simulate real trades with commission
-5. **Portfolio Update**: Update holdings and cash
+### **Data Sources**
+
+- **Yahoo Finance API**: Real-time stock prices and historical data
+- **NSE (National Stock Exchange)**: Indian stock market data
+- **Technical Indicators**: Custom implementation of 15+ indicators
+
+## 📊 Supported Stocks
+
+### **50+ NSE Stocks Including:**
+
+- **Banking**: HDFCBANK.NS, ICICIBANK.NS, SBIN.NS, KOTAKBANK.NS
+- **IT**: TCS.NS, INFY.NS, WIPRO.NS, HCLTECH.NS
+- **Consumer**: RELIANCE.NS, ITC.NS, HINDUNILVR.NS, NESTLEIND.NS
+- **Telecom**: BHARTIARTL.NS, ADANIPORTS.NS
+- **And many more...**
+
+## 🤖 AI Models
+
+### **Machine Learning Algorithms**
+
+1. **XGBoost Regressor**
+
+   - Gradient boosting for price prediction
+   - Feature importance analysis
+   - Hyperparameter optimization
+
+2. **Random Forest**
+   - Ensemble learning for signal generation
+   - Overfitting prevention
+   - Feature selection
+
+### **Technical Indicators (15+)**
+
+- **Trend**: SMA, EMA, MACD
+- **Momentum**: RSI, Stochastic, Williams %R
+- **Volatility**: Bollinger Bands, ATR
+- **Volume**: OBV, Volume SMA
+- **Support/Resistance**: Pivot Points
+
+### **Features**
+
+- **Price Data**: Open, High, Low, Close, Volume
+- **Technical Indicators**: All 15+ indicators as features
+- **Lag Features**: Previous day's values
+- **Rolling Statistics**: Moving averages and standard deviations
+
+## 💰 Portfolio Management
+
+### **Simulated Trading**
+
+- **Starting Capital**: ₹1,00,000 (demo money)
+- **Commission**: 0.1% per trade (realistic simulation)
+- **Position Sizing**: Maximum 10% per stock
+- **Risk Management**: Automatic stop-loss at 5%
+
+### **Trading Features**
+
+- **Real-time Prices**: Live NSE data via Yahoo Finance
+- **P&L Tracking**: Unrealized and realized gains/losses
+- **Portfolio Analytics**: Performance metrics and statistics
+- **Trade History**: Complete log of all transactions
+
+## 🚦 Getting Started Guide
+
+### **Step 1: Initialize the Bot** ⏱️ _30 seconds_
+
+1. Open the dashboard at `http://localhost:8501`
+2. Go to the sidebar and click **"🚀 Initialize Bot"**
+3. Wait for initialization to complete
+
+### **Step 2: Train AI Models** ⏱️ _2-5 minutes_
+
+1. Go to **"🎯 AI Trading"** → **"🧠 Model Training"**
+2. Select 5-10 stocks from the list
+3. Click **"🚀 Train All Selected Models"**
+4. Wait for training to complete
+
+### **Step 3: Get AI Recommendations** ⏱️ _30 seconds_
+
+1. Go to **"🎯 AI Trading"** → **"🤖 AI Recommendations"**
+2. Click **"🔄 Get Fresh AI Recommendations"**
+3. View ranked predictions with confidence scores
+
+### **Step 4: Start Trading** ⏱️ _1 minute per trade_
+
+1. Go to **"🎯 AI Trading"** → **"💼 Manual Trading"**
+2. Buy stocks based on AI recommendations
+3. Monitor performance in **"🎯 Price Targets"**
+
+## 📈 Performance Metrics
+
+### **Model Accuracy**
+
+- **RMSE**: Root Mean Square Error for price predictions
+- **R² Score**: Coefficient of determination (>0.3 is good)
+- **Signal Accuracy**: Percentage of correct buy/sell signals
+
+### **Trading Performance**
+
+- **Total Return**: Overall portfolio performance
+- **Sharpe Ratio**: Risk-adjusted returns
+- **Maximum Drawdown**: Largest peak-to-trough decline
+- **Win Rate**: Percentage of profitable trades
 
 ## 🛡️ Risk Management
 
-### Portfolio Level
+### **Built-in Safety Features**
 
-- **Maximum Position Size**: 10% of portfolio per stock
-- **Maximum Daily Loss**: 2% of portfolio value
-- **Maximum Drawdown**: 10% from peak value
-- **Position Correlation**: Maximum 70% correlation between positions
+- ✅ **Demo Trading Only**: No real money at risk
+- ✅ **Position Limits**: Maximum 10% allocation per stock
+- ✅ **Stop-Loss**: Automatic 5% stop-loss on all positions
+- ✅ **Take-Profit**: 15% profit targets
+- ✅ **Risk Assessment**: Low/Medium/High risk scoring
 
-### Trade Level
+### **Market Hours**
 
-- **Stop Loss Orders**: Automatic 5% stop loss
-- **Take Profit Orders**: Automatic 15% profit taking
-- **Commission Costs**: 0.1% per trade simulation
-- **Cash Buffer**: 5% minimum cash reserve
+- **NSE Trading Hours**: 9:15 AM - 3:30 PM IST
+- **Real-time Status**: Dashboard shows market open/close
+- **After-hours**: Analysis continues with last available prices
 
-### Model Level
+## 🔧 Advanced Configuration
 
-- **Confidence Thresholds**: Minimum confidence for trades
-- **Model Validation**: Regular performance monitoring
-- **Data Quality Checks**: Input data validation
-- **Prediction Limits**: Reasonable prediction bounds
-
-## 📁 File Structure
-
-```
-Stock-Trade_AI/
-├── config.py              # Configuration and parameters
-├── data_fetcher.py         # Real-time data collection
-├── technical_indicators.py # Technical analysis indicators
-├── lstm_model.py          # LSTM neural network implementation
-├── portfolio_manager.py   # Portfolio and trade management
-├── trading_bot.py         # Main trading bot logic
-├── dashboard.py           # Streamlit dashboard
-├── run_dashboard.py       # Dashboard launcher
-├── requirements.txt       # Python dependencies
-├── README.md             # This file
-├── models/               # Saved LSTM models
-├── scalers/              # Data preprocessing scalers
-├── reports/              # Trading reports and analytics
-└── charts/               # Generated charts and visualizations
-```
-
-## 🔧 Configuration
-
-### Key Settings (config.py)
+### **Model Parameters**
 
 ```python
-# Trading Configuration
-INITIAL_CAPITAL = 100000          # Starting capital
-COMMISSION_RATE = 0.001           # 0.1% commission
-MAX_POSITION_SIZE = 0.1           # 10% max per stock
-STOP_LOSS_PERCENTAGE = 0.05       # 5% stop loss
-TAKE_PROFIT_PERCENTAGE = 0.15     # 15% take profit
-
-# LSTM Configuration
-LSTM_CONFIG = {
-    "sequence_length": 60,         # 60 days lookback
-    "epochs": 100,                 # Training epochs
-    "batch_size": 32,              # Batch size
-    "lstm_units": [50, 50],        # LSTM layer units
-    "dropout_rate": 0.2,           # Dropout rate
-    "learning_rate": 0.001         # Learning rate
+# XGBoost Configuration
+XGB_PARAMS = {
+    'n_estimators': 100,
+    'max_depth': 6,
+    'learning_rate': 0.1,
+    'random_state': 42
 }
+
+# Risk Management
+STOP_LOSS_PERCENTAGE = 0.05  # 5%
+TAKE_PROFIT_PERCENTAGE = 0.15  # 15%
+MAX_POSITION_SIZE = 0.10  # 10% of portfolio
 ```
 
-### Customization Options
+### **Technical Indicator Settings**
 
-1. **Stock Selection**: Modify NSE_STOCKS list
-2. **Trading Parameters**: Adjust risk and position sizing
-3. **Model Architecture**: Change LSTM configuration
-4. **Indicators**: Add/remove technical indicators
-5. **Market Hours**: Customize trading schedule
+```python
+# Moving Averages
+SMA_PERIODS = [5, 10, 20, 50]
+EMA_PERIODS = [12, 26]
 
-## 📊 Performance Monitoring
+# Oscillators
+RSI_PERIOD = 14
+MACD_FAST = 12
+MACD_SLOW = 26
+MACD_SIGNAL = 9
+```
 
-### Dashboard Metrics
+## 📚 API Reference
 
-- **Portfolio Value**: Real-time portfolio valuation
-- **Total Return**: Percentage and absolute returns
-- **Sharpe Ratio**: Risk-adjusted returns
-- **Win Rate**: Percentage of profitable trades
-- **Maximum Drawdown**: Largest peak-to-trough decline
+### **Main Classes**
 
-### Trade Analytics
+#### `TradingBot`
 
-- **Trade History**: Complete log of all trades
-- **Signal Accuracy**: Prediction vs actual performance
-- **Model Performance**: LSTM model metrics
-- **Risk Metrics**: Portfolio risk assessment
+```python
+bot = TradingBot()
+bot.initialize()
+signals = bot.get_current_signals()
+portfolio = bot.get_portfolio_status()
+```
 
-## 🚨 Important Disclaimers
+#### `PortfolioManager`
 
-### Simulation Only
+```python
+pm = PortfolioManager()
+pm.buy_stock(symbol, quantity, price)
+pm.sell_stock(symbol, quantity, price)
+portfolio = pm.get_portfolio_status()
+```
 
-- **No Real Money**: This bot uses dummy money for simulation
-- **Paper Trading**: All trades are simulated, not executed
-- **Educational Purpose**: For learning and research only
-- **No Financial Advice**: Not intended as investment advice
+#### `DataFetcher`
 
-### Risk Warnings
+```python
+df = DataFetcher()
+data = df.fetch_historical_data(symbol, period="1y")
+price = df.get_current_price(symbol)
+```
 
-- **Market Risk**: Stock prices can be volatile and unpredictable
-- **Model Risk**: AI predictions may be inaccurate
-- **Technical Risk**: Software bugs or failures possible
-- **Data Risk**: Real-time data may have delays or errors
+## 📊 Sample Output
 
-### Regulatory Compliance
+### **AI Recommendations**
 
-- **Indian Regulations**: Ensure compliance with SEBI regulations
-- **Data Usage**: Respect Yahoo Finance terms of service
-- **Trading Permissions**: Obtain proper licenses for live trading
-- **Tax Implications**: Understand tax obligations for trading
+```
+Symbol      | Recommendation | Confidence | Current Price | Target
+------------|----------------|------------|---------------|--------
+RELIANCE.NS | 🟢 STRONG BUY  | 92%        | ₹2,520       | ₹2,650
+TCS.NS      | 🟢 BUY         | 78%        | ₹3,920       | ₹4,100
+INFY.NS     | 🟡 HOLD        | 55%        | ₹1,680       | ₹1,700
+HDFCBANK.NS | 🔴 SELL        | 83%        | ₹1,600       | ₹1,520
+```
+
+### **Portfolio Status**
+
+```
+Portfolio Value: ₹1,05,240 (+5.24%)
+Available Cash:  ₹15,780
+Active Positions: 8
+Day's P&L:       +₹1,240 (+1.2%)
+```
+
+## 🔧 Troubleshooting
+
+### **Common Issues**
+
+#### **Dashboard Not Loading**
+
+```bash
+# Kill any existing Streamlit processes
+pkill -f streamlit
+
+# Restart the dashboard
+python3 setup_and_run.py
+```
+
+#### **Data Fetching Errors**
+
+- Check internet connection
+- Verify NSE market hours
+- Try refreshing the data
+
+#### **Model Training Failures**
+
+- Ensure sufficient historical data (>100 days)
+- Check for network connectivity
+- Try training individual stocks first
+
+### **Performance Issues**
+
+- Close other browser tabs
+- Restart the dashboard
+- Clear browser cache
 
 ## 🤝 Contributing
 
-### Development Setup
+### **How to Contribute**
 
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch: `git checkout -b feature-name`
 3. Make your changes
 4. Add tests if applicable
-5. Submit a pull request
+5. Commit: `git commit -am 'Add feature'`
+6. Push: `git push origin feature-name`
+7. Create a Pull Request
 
-### Areas for Contribution
+### **Areas for Contribution**
 
-- **New Features**: Additional indicators or strategies
-- **Bug Fixes**: Identify and fix issues
-- **Documentation**: Improve documentation
-- **Testing**: Add unit tests and integration tests
-- **Performance**: Optimize code and models
-
-## 📞 Support
-
-### Getting Help
-
-- **Issues**: Report bugs on GitHub issues
-- **Questions**: Ask questions in discussions
-- **Documentation**: Check README and code comments
-- **Community**: Join trading and ML communities
-
-### Common Issues
-
-1. **Module Import Errors**: Check Python path and dependencies
-2. **Data Connection Issues**: Verify internet connection
-3. **Model Training Failures**: Check memory and data availability
-4. **Dashboard Loading Issues**: Ensure Streamlit is properly installed
-
-## 📚 Learning Resources
-
-### Recommended Reading
-
-- **Technical Analysis**: "Technical Analysis of the Financial Markets" by Murphy
-- **Machine Learning**: "Hands-On Machine Learning" by Aurélien Géron
-- **Algorithmic Trading**: "Algorithmic Trading" by Ernest Chan
-- **Python Finance**: "Python for Finance" by Yves Hilpisch
-
-### Online Resources
-
-- **NSE Website**: Official exchange information
-- **Yahoo Finance API**: Data source documentation
-- **TensorFlow/Keras**: Deep learning framework docs
-- **Streamlit**: Dashboard framework documentation
+- 🔥 New technical indicators
+- 🚀 Additional ML models (LSTM, Transformer)
+- 📊 Enhanced visualizations
+- 🛡️ Advanced risk management
+- 🌐 Real broker integration
+- 📱 Mobile-responsive design
 
 ## 📄 License
 
-This project is open source and available under the MIT License. See LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## ⚠️ Disclaimer
 
-- **Yahoo Finance**: For providing free market data
-- **TensorFlow Team**: For the deep learning framework
-- **Streamlit Team**: For the dashboard framework
-- **Python Community**: For the amazing ecosystem
-- **NSE**: For the transparent and efficient market
+**This software is for educational and research purposes only. It is not intended for real money trading. The predictions and signals generated are based on historical data and technical analysis, which do not guarantee future performance. Always consult with a qualified financial advisor before making investment decisions.**
+
+## 📞 Support
+
+### **Issues & Questions**
+
+- 🐛 **Bug Reports**: Open an issue on GitHub
+- 💡 **Feature Requests**: Submit via GitHub Issues
+- ❓ **Questions**: Check existing issues or create a new one
+
+### **Documentation**
+
+- 📖 **Wiki**: Detailed guides and tutorials
+- 🎥 **Videos**: Setup and usage demonstrations
+- 📊 **Examples**: Sample configurations and use cases
 
 ---
 
-**Happy Trading! 📈🤖**
+## 🌟 **Key Highlights**
 
-_Remember: This is for educational purposes only. Always do your own research and never invest more than you can afford to lose._
+✅ **Professional-grade trading dashboard**  
+✅ **AI-powered stock recommendations**  
+✅ **Real-time portfolio management**  
+✅ **15+ technical indicators**  
+✅ **Risk management built-in**  
+✅ **Easy one-command setup**  
+✅ **50+ NSE stocks supported**  
+✅ **No real money risk**
+
+**Perfect for learning algorithmic trading and ML in finance!** 📈🤖
+
+---
+
+<div align="center">
+
+**Made with ❤️ for the trading community**
+
+[⭐ Star this repo](https://github.com/yourusername/Stock-Trade_AI) • [🍴 Fork it](https://github.com/yourusername/Stock-Trade_AI/fork) • [📝 Report Issues](https://github.com/yourusername/Stock-Trade_AI/issues)
+
+</div>

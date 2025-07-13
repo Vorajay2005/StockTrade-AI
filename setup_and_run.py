@@ -39,7 +39,7 @@ def install_requirements(venv_python):
     print("📦 Installing requirements in virtual environment...")
     try:
         subprocess.check_call([str(venv_python), "-m", "pip", "install", "--upgrade", "pip"])
-        subprocess.check_call([str(venv_python), "-m", "pip", "install", "-r", "requirements_compatible.txt"])
+        subprocess.check_call([str(venv_python), "-m", "pip", "install", "-r", "requirements.txt"])
         print("✅ Requirements installed successfully!")
         return True
     except subprocess.CalledProcessError as e:
