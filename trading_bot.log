@@ -1,0 +1,34 @@
+2025-07-13 12:58:32,775 - portfolio_manager - INFO - Database initialized successfully
+2025-07-13 12:58:32,778 - trading_bot - INFO - Trading bot initialized with 10 symbols
+2025-07-13 12:58:32,780 - trading_bot - INFO - Initializing LSTM models...
+2025-07-13 12:58:32,780 - trading_bot - INFO - Initializing model for RELIANCE.NS
+2025-07-13 12:58:32,781 - ml_model_simple - WARNING - No saved model found for RELIANCE.NS
+2025-07-13 12:58:32,781 - trading_bot - WARNING - No existing model found for RELIANCE.NS
+2025-07-13 12:58:32,781 - trading_bot - INFO - Initializing model for TCS.NS
+2025-07-13 12:58:32,782 - ml_model_simple - WARNING - No saved model found for TCS.NS
+2025-07-13 12:58:32,782 - trading_bot - WARNING - No existing model found for TCS.NS
+2025-07-13 12:58:32,782 - trading_bot - INFO - Initializing model for INFY.NS
+2025-07-13 12:58:32,782 - ml_model_simple - WARNING - No saved model found for INFY.NS
+2025-07-13 12:58:32,782 - trading_bot - WARNING - No existing model found for INFY.NS
+2025-07-13 12:58:32,782 - trading_bot - INFO - Initializing model for HDFCBANK.NS
+2025-07-13 12:58:32,783 - ml_model_simple - WARNING - No saved model found for HDFCBANK.NS
+2025-07-13 12:58:32,783 - trading_bot - WARNING - No existing model found for HDFCBANK.NS
+2025-07-13 12:58:32,783 - trading_bot - INFO - Initializing model for HINDUNILVR.NS
+2025-07-13 12:58:32,783 - ml_model_simple - WARNING - No saved model found for HINDUNILVR.NS
+2025-07-13 12:58:32,783 - trading_bot - WARNING - No existing model found for HINDUNILVR.NS
+2025-07-13 12:58:32,783 - trading_bot - INFO - Initializing model for ICICIBANK.NS
+2025-07-13 12:58:32,786 - ml_model_simple - WARNING - No saved model found for ICICIBANK.NS
+2025-07-13 12:58:32,786 - trading_bot - WARNING - No existing model found for ICICIBANK.NS
+2025-07-13 12:58:32,787 - trading_bot - INFO - Initializing model for KOTAKBANK.NS
+2025-07-13 12:58:32,787 - ml_model_simple - WARNING - No saved model found for KOTAKBANK.NS
+2025-07-13 12:58:32,787 - trading_bot - WARNING - No existing model found for KOTAKBANK.NS
+2025-07-13 12:58:32,787 - trading_bot - INFO - Initializing model for BHARTIARTL.NS
+2025-07-13 12:58:32,787 - ml_model_simple - WARNING - No saved model found for BHARTIARTL.NS
+2025-07-13 12:58:32,787 - trading_bot - WARNING - No existing model found for BHARTIARTL.NS
+2025-07-13 12:58:32,787 - trading_bot - INFO - Initializing model for ITC.NS
+2025-07-13 12:58:32,787 - ml_model_simple - WARNING - No saved model found for ITC.NS
+2025-07-13 12:58:32,788 - trading_bot - WARNING - No existing model found for ITC.NS
+2025-07-13 12:58:32,788 - trading_bot - INFO - Initializing model for SBIN.NS
+2025-07-13 12:58:32,788 - ml_model_simple - WARNING - No saved model found for SBIN.NS
+2025-07-13 12:58:32,788 - trading_bot - WARNING - No existing model found for SBIN.NS
+2025-07-13 12:58:32,788 - trading_bot - INFO - Model initialization completed
