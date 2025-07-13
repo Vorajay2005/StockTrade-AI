@@ -253,11 +253,7 @@ class TradingDashboard:
         """Render portfolio tab when bot is not initialized"""
         st.header("📈 Portfolio Management")
         st.warning("⚠️ **Bot not initialized yet**")
-        st.info("Please initialize the trading bot from the sidebar to:")
-        st.write("- ✅ View your current portfolio")
-        st.write("- ✅ See individual stock positions")
-        st.write("- ✅ Track profit & loss")
-        st.write("- ✅ Monitor portfolio performance")
+       
         
         # Show sample portfolio structure
         st.subheader("📊 Sample Portfolio Structure")
