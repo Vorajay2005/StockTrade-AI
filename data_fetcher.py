@@ -10,6 +10,7 @@ import logging
 import time
 from typing import Dict, List, Optional, Tuple
 import threading
+import pytz
 from config import *
 
 class DataFetcher:
@@ -19,6 +20,11 @@ class DataFetcher:
         self.last_update = {}
         self.is_running = False
         self.update_thread = None
+        self.ist_timezone = pytz.timezone('Asia/Kolkata')
+    
+    def get_ist_time(self) -> datetime:
+        """Get current time in Indian Standard Time (IST)"""
+        return datetime.now(self.ist_timezone)
         
     def fetch_historical_data(self, symbol: str, period: str = "1y", interval: str = "1d") -> pd.DataFrame:
         """
@@ -168,7 +174,7 @@ class DataFetcher:
                 
                 # Update cache
                 self.cache = current_data
-                self.last_update = datetime.now()
+                self.last_update = self.get_ist_time()
                 
                 # Call callback if provided
                 if self.callback:
@@ -188,7 +194,7 @@ class DataFetcher:
         Returns:
             True if market is open, False otherwise
         """
-        now = datetime.now()
+        now = self.get_ist_time()
         current_time = now.strftime("%H:%M")
         
         # Check if it's a weekday (Monday = 0, Sunday = 6)
@@ -208,12 +214,13 @@ class DataFetcher:
         Returns:
             Dictionary with market status information
         """
-        now = datetime.now()
+        now = self.get_ist_time()
         current_time = now.strftime("%H:%M")
+        current_date = now.strftime("%Y-%m-%d")
         
         status = {
             'is_open': self.is_market_open(),
-            'current_time': current_time,
+            'current_time': f"{current_date} {current_time} IST",
             'market_open': MARKET_OPEN,
             'market_close': MARKET_CLOSE,
             'is_weekend': now.weekday() > 4,
@@ -223,22 +230,31 @@ class DataFetcher:
         }
         
         if not status['is_open']:
-            if now.weekday() > 4:  # Weekend
-                # Next Monday
-                days_until_monday = 7 - now.weekday()
+            if now.weekday() > 4:  # Weekend (Saturday=5, Sunday=6)
+                # Calculate days until next Monday
+                if now.weekday() == 5:  # Saturday
+                    days_until_monday = 2
+                else:  # Sunday
+                    days_until_monday = 1
+                
                 next_open = now + timedelta(days=days_until_monday)
                 next_open = next_open.replace(hour=9, minute=15, second=0, microsecond=0)
-                status['next_open'] = next_open.strftime("%Y-%m-%d %H:%M")
+                status['next_open'] = next_open.strftime("%Y-%m-%d %H:%M IST")
             else:
-                # Next trading day
+                # Weekday - check if market closed for the day or hasn't opened yet
                 if current_time > MARKET_CLOSE:
-                    # Market closed for the day, next open is tomorrow
+                    # Market closed for the day, find next trading day
                     next_open = now + timedelta(days=1)
+                    
+                    # If tomorrow is weekend, skip to Monday
+                    while next_open.weekday() > 4:  # Skip Saturday (5) and Sunday (6)
+                        next_open = next_open + timedelta(days=1)
+                    
                     next_open = next_open.replace(hour=9, minute=15, second=0, microsecond=0)
                 else:
                     # Market hasn't opened yet today
                     next_open = now.replace(hour=9, minute=15, second=0, microsecond=0)
-                status['next_open'] = next_open.strftime("%Y-%m-%d %H:%M")
+                status['next_open'] = next_open.strftime("%Y-%m-%d %H:%M IST")
         
         return status
     
