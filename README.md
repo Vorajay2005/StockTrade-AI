@@ -6,6 +6,23 @@ An intelligent stock trading bot that uses machine learning to analyze NSE (Nati
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-red)](https://streamlit.io)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![NSE](https://img.shields.io/badge/Market-NSE%20India-orange)](https://nseindia.com)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit%20Cloud-brightgreen)](https://stocktradeai.streamlit.app)
+
+---
+
+## 🌐 **Live Demo Available!**
+
+### 🚀 **Try it now:** [https://stocktradeai.streamlit.app](https://stocktradeai.streamlit.app)
+
+**No installation required!** Experience the full AI Stock Trading Bot dashboard instantly in your browser. All features are available including:
+
+- ✅ Real-time NSE stock data
+- ✅ AI-powered trading recommendations
+- ✅ Interactive portfolio management
+- ✅ Live charts and technical analysis
+- ✅ Risk management tools
+
+---
 
 ## 🌟 Features
 
@@ -33,12 +50,20 @@ An intelligent stock trading bot that uses machine learning to analyze NSE (Nati
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### 🌐 **Try Live Demo**
+
+**🎯 Access the live dashboard instantly:** [https://stocktradeai.streamlit.app](https://stocktradeai.streamlit.app)
+
+_No installation required! The app is hosted on Streamlit Community Cloud._
+
+### 💻 **Local Installation**
+
+#### Prerequisites
 
 - Python 3.8 or higher
 - Git
 
-### Installation
+#### Installation Steps
 
 1. **Clone the repository**
 
@@ -205,7 +230,14 @@ That's it! The setup script automatically:
 
 ## 🚦 Getting Started Guide
 
-### **Step 1: Initialize the Bot** ⏱️ _30 seconds_
+### **Step 1: Access the Dashboard** ⏱️ _10 seconds_
+
+**Option A: Live Demo (Recommended)**
+
+1. Visit [https://stocktradeai.streamlit.app](https://stocktradeai.streamlit.app)
+2. Start using immediately - no setup required!
+
+**Option B: Local Installation**
 
 1. Open the dashboard at `http://localhost:8501`
 2. Go to the sidebar and click **"🚀 Initialize Bot"**
@@ -442,6 +474,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ for the trading community**
 
-[⭐ Star this repo](https://github.com/yourusername/Stock-Trade_AI) • [🍴 Fork it](https://github.com/yourusername/Stock-Trade_AI/fork) • [📝 Report Issues](https://github.com/yourusername/Stock-Trade_AI/issues)
+[🚀 Live Demo](https://stocktradeai.streamlit.app) • [⭐ Star this repo](https://github.com/yourusername/Stock-Trade_AI) • [🍴 Fork it](https://github.com/yourusername/Stock-Trade_AI/fork) • [📝 Report Issues](https://github.com/yourusername/Stock-Trade_AI/issues)
 
 </div>
